@@ -1,0 +1,12 @@
+LOAD DATA LOCAL INFILE 'C:\\ProgramData\\MySQL\\MySQL Server 8.0\\Uploads\\1T2023.csv'
+INTO TABLE demonstracoes_contabeis
+CHARACTER SET utf8mb4
+FIELDS TERMINATED BY ';' 
+OPTIONALLY ENCLOSED BY '"'
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @vl_inicial, @vl_final)
+SET 
+    VL_SALDO_INICIAL = REPLACE(@vl_inicial, ',', '.'),
+    VL_SALDO_FINAL = REPLACE(@vl_final, ',', '.'),
+    PERIODO_TRIMESTRAL = '2023-1';

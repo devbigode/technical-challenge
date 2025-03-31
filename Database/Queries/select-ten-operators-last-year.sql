@@ -1,0 +1,13 @@
+SELECT 
+    dc.REG_ANS, 
+    op.Nome_Fantasia,
+    dc.DESCRICAO,
+    dc.PERIODO_TRIMESTRAL,
+    SUM(dc.VL_SALDO_FINAL) AS Total_Despesas
+FROM demonstracoes_contabeis dc
+JOIN operadoras op ON dc.REG_ANS = op.Registro_ANS
+WHERE dc.DESCRICAO = 'EVENTOS/ SINISTROS CONHECIDOS OU AVISADOS  DE ASSISTÊNCIA A SAÚDE MEDICO HOSPITALAR'
+AND dc.PERIODO_TRIMESTRAL LIKE '2024-%'
+GROUP BY dc.REG_ANS, op.Nome_Fantasia, dc.PERIODO_TRIMESTRAL
+ORDER BY Total_Despesas DESC
+LIMIT 10;
