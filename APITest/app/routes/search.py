@@ -33,16 +33,4 @@ def search_operator():
 
         return jsonify(listResult)
 
-    if filterByName:
-        listResult = [
-            operator for operator in listAllOperator
-            if filterByName.replace(" ", "").lower() in operator["Razao_Social"].replace(" ", "").lower() or operator[
-                "Nome_Fantasia"].replace(" ", "").lower()
-        ]
-
-        if not listResult:
-            return jsonify({"message": "Empresa não encontrada."})
-
-        return jsonify(listResult)
-
     return jsonify(listAllOperator)
